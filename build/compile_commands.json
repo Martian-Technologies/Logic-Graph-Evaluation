@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/Users/ben/Documents/GitHub/Logic-Graph-Evaluation/build",
+  "command": "/usr/bin/clang++  -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk/System/Library/Frameworks -g -std=gnu++11 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -o CMakeFiles/Testing.dir/test.cpp.o -c /Users/ben/Documents/GitHub/Logic-Graph-Evaluation/test.cpp",
+  "file": "/Users/ben/Documents/GitHub/Logic-Graph-Evaluation/test.cpp",
+  "output": "CMakeFiles/Testing.dir/test.cpp.o"
+}
+]
