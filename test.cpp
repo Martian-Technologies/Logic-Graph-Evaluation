@@ -27,28 +27,23 @@ int main() {
     const int count = 1000;
     std::vector<int> output(count, 0);
 
-    cl_platform_id platform;
-    cl_device_id device;
-    cl_context context;
-    cl_command_queue queue;
-    cl_program program;
-    cl_kernel kernel;
-    cl_mem outputBuffer;
     cl_int err;
 
     // Get platform and device information
+    cl_platform_id platform;
     err = clGetPlatformIDs(1, &platform, nullptr);
     CHECK_ERROR(err, "Failed to get platform ID");
 
+    cl_device_id device;
     err = clGetDeviceIDs(platform, CL_DEVICE_TYPE_GPU, 1, &device, nullptr);
     CHECK_ERROR(err, "Failed to get device ID");
 
     // Create OpenCL context
-    context = clCreateContext(nullptr, 1, &device, nullptr, nullptr, &err);
+    cl_context context = clCreateContext(nullptr, 1, &device, nullptr, nullptr, &err);
     CHECK_ERROR(err, "Failed to create OpenCL context");
 
     // Create command queue
-    queue = clCreateCommandQueue(context, device, 0, &err);
+   	cl_command_queue queue = clCreateCommandQueue(context, device, 0, &err);
     CHECK_ERROR(err, "Failed to create command queue");
 
     // Read the kernel source from the file
@@ -56,7 +51,7 @@ int main() {
     const char* kernelSourceCStr = kernelSource.c_str();  // Convert string to C-style string
 
     // Create a program from the kernel source
-    program = clCreateProgramWithSource(context, 1, &kernelSourceCStr, nullptr, &err);
+    cl_program program = clCreateProgramWithSource(context, 1, &kernelSourceCStr, nullptr, &err);
     CHECK_ERROR(err, "Failed to create program with source");
 
     // Build the program
@@ -71,11 +66,11 @@ int main() {
     }
 
     // Create the OpenCL kernel
-    kernel = clCreateKernel(program, "count_kernel", &err);
+    cl_kernel kernel = clCreateKernel(program, "count_kernel", &err);
     CHECK_ERROR(err, "Failed to create kernel");
 
     // Create a buffer to hold the output data
-    outputBuffer = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(int) * count, nullptr, &err);
+    cl_mem outputBuffer = clCreateBuffer(context, CL_MEM_WRITE_ONLY, sizeof(int) * count, nullptr, &err);
     CHECK_ERROR(err, "Failed to create output buffer");
 
     // Set the kernel argument (the output buffer)
